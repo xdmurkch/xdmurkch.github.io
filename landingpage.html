@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>murkch</title>
+    <link rel="stylesheet" href="LPstyle.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+<div class="animation"></div>
+<section class="section">
+    <header>
+        <div class="logo">
+            <a href="#">oliver koch</a>
+        </div>
+        <div class="hamburger-menu open-main-nav">
+            <span class="burger"></span>
+            <span class="burger"></span>
+            <span class="burger"></span>
+        </div>
+        <ul class="ul">
+            <li><a href="#">about.</a></li>
+            <li><a href="#">websites.</a></li>
+            <li><a href="#">contact.</a></li>
+        </ul>
+    </header>
+    <div class="main-nav">
+        <ul>
+            <li><a href="#">about.</a></li>
+            <li><a href="#">websites.</a></li>
+            <li><a href="#">contact.</a></li>
+        </ul>
+    </div>
+    <div class="img-wrapper">
+        <div class="confetti-container"></div> <img src="../assets/partyMurkch.png" alt="img" class="mainImg">
+    </div>
+    <div class="container">
+        <h1 class="h1animate">murkch</h1>
+        <p class="p">waku waku.</p>
+    </div>
+    <div class="social">
+        <a href="../school/vigenere.html" class="vigenere">vigenere.</a>
+
+        <a href="#" class="insta">insta.</a>
+        <a href="#" class="threads">threads.</a>
+        <a href="#" class="linkedin">linkedin.</a>
+        <a href="#" class="github">github.</a>
+        <a href="#" class="mail">mail.</a>
+    </div>
+    <div class="theme" id="dark" onclick="toggle()">turnDark.</div>
+    <div class="theme" id="light" onclick="toggle()">turnLight.</div>
+</section>
+<!-- #TODO
+ - Lav et easter egg med konfetti
+ - Korrekt index osv., med login der verificerer med db
+ - Floating menu med navigation (early concept rn, er insp. af awwwards.coms floating menu.
+ - bedre nesting og bedre kodestruktur (tak til awwwards for insp. igen)
+ - UNDERSØG modals (endnu engang, tak til awwwards-->
+<div class="blob"></div>
+<div class="blob"></div>
+<div class="blob"></div>
+<div class="blob"></div>
+<div class="green-blob"></div>
+<div class="five-blob"></div>
+<script src="LPscript.js"></script>
+</body>
+</html>
