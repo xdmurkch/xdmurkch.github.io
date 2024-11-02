@@ -123,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //-----------------------------------------//
 
 document.addEventListener("DOMContentLoaded", function() {
+    let isTouchpad = false;
     let scrollThreshold = 4000;
     let scrollAmount = 0;
 
@@ -130,15 +131,35 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.style.overflow = 'hidden';
 
     window.addEventListener('wheel', function(event) {
-        scrollAmount += event.deltaY;
-
-        if (scrollAmount >= scrollThreshold) {
-            document.body.style.overflow = 'auto';
+        if (event.deltaMode === 0 && Math.abs(event.deltaY) < 50) {
+            isTouchpad = true;
         } else {
-            // Prevent default scrolling behavior until threshold is reached
-            event.preventDefault();
+            isTouchpad = false;
+        }
+
+        if (!isTouchpad) {
+            scrollAmount += event.deltaY;
+
+            if (scrollAmount >= scrollThreshold) {
+                document.body.style.overflow = 'auto';
+            } else {
+                // Prevent default scrolling behavior until threshold is reached
+                event.preventDefault();
+            }
+        } else {
+            document.body.style.overflow = 'auto';
         }
     }, { passive: false });
+
+    document.addEventListener('scroll', function() {
+        const threshold = isTouchpad ? 150 : 50; // Set threshold based on input device
+        if (window.scrollY <= threshold) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    });
 });
 
 //-----------------------------------------//
