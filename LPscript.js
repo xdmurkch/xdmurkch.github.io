@@ -123,8 +123,11 @@ document.addEventListener("DOMContentLoaded", function() {
 //-----------------------------------------//
 
 document.addEventListener("DOMContentLoaded", function() {
-    let scrollThreshold = 78000;
+    let scrollThreshold = 4000;
     let scrollAmount = 0;
+
+    // Initially set overflow to hidden
+    document.body.style.overflow = 'hidden';
 
     window.addEventListener('wheel', function(event) {
         scrollAmount += event.deltaY;
@@ -132,10 +135,12 @@ document.addEventListener("DOMContentLoaded", function() {
         if (scrollAmount >= scrollThreshold) {
             document.body.style.overflow = 'auto';
         } else {
-            document.body.style.overflow = 'hidden';
+            // Prevent default scrolling behavior until threshold is reached
+            event.preventDefault();
         }
-    });
+    }, { passive: false });
 });
+
 //-----------------------------------------//
 
 
@@ -143,13 +148,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //-----------------------------------------//
 
 document.addEventListener('scroll', function() {
-    let threshold = 150; // Default threshold
-
-    // Check if the user is using a mouse or a mobile device
-    if (navigator.maxTouchPoints > 0 || matchMedia('(pointer: coarse)').matches) {
-        threshold = 50;
-    }
-
+    const threshold = 500; // Adjust this value as needed
     if (window.scrollY <= threshold) {
         window.scrollTo({
             top: 0,
