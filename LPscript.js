@@ -114,31 +114,42 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-    document.addEventListener("DOMContentLoaded", function() {
-        let lastScrollY = window.scrollY;
-        const threshold = 650; // Adjust this value as needed
-        const mobileThreshold = 100; // Adjust this value for mobile devices
+document.addEventListener("DOMContentLoaded", function() {
+    let lastScrollY = window.scrollY;
+    const threshold = 650; // Adjust this value as needed
+    const mobileThreshold = 100; // Adjust this value for mobile devices
 
-        function isMobile() {
-            return window.innerWidth <= 768; // Define mobile screen width threshold
+    function isMobile() {
+        return window.innerWidth <= 768; // Define mobile screen width threshold
+    }
+
+    function debounce(func, wait) {
+        let timeout;
+        return function() {
+            const context = this, args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), wait);
+        };
+    }
+
+    const handleScroll = debounce(function() {
+        const currentScrollY = window.scrollY;
+        const currentThreshold = isMobile() ? mobileThreshold : threshold;
+
+        // Check if the user is scrolling up and is within the threshold
+        if (currentScrollY < lastScrollY && currentScrollY <= currentThreshold) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
-        document.addEventListener('scroll', function() {
-            const currentScrollY = window.scrollY;
-            const currentThreshold = isMobile() ? mobileThreshold : threshold;
+        // Update the last scroll position
+        lastScrollY = currentScrollY;
+    }, 100); // Adjust the debounce delay as needed
 
-            // Check if the user is scrolling up and is within the threshold
-            if (currentScrollY < lastScrollY && currentScrollY <= currentThreshold) {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }
-
-            // Update the last scroll position
-            lastScrollY = currentScrollY;
-        });
-    });
+    document.addEventListener('scroll', handleScroll);
+});
 
 
 
