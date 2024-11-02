@@ -23,10 +23,8 @@ document.querySelectorAll('.h1animate, .animation, .p, .logo, .theme, .social, .
 const tl = gsap.timeline({
     defaults: {
         ease: "power2.out"
-    },
-    onComplete: function() {
-        document.body.style.overflow = 'auto';
     }
+   
 });
 
 tl.fromTo(".h1animate", {
@@ -116,68 +114,29 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.classList.remove("no-js");
 });
 
-//-----------------------------------------//
 
+    document.addEventListener("DOMContentLoaded", function() {
+        let lastScrollY = window.scrollY;
+        const threshold = 650; // Adjust this value as needed
+        const mobileThreshold = 100; // Adjust this value for mobile devices
 
-// script to only allow scrolling after a certain scrolling threshold //
-//-----------------------------------------//
-
-document.addEventListener("DOMContentLoaded", function() {
-    let isTouchpad = false;
-    let scrollThreshold = 4000;
-    let scrollAmount = 0;
-
-    // Initially set overflow to hidden
-    document.body.style.overflow = 'hidden';
-
-    window.addEventListener('wheel', function(event) {
-        if (event.deltaMode === 0 && Math.abs(event.deltaY) < 50) {
-            isTouchpad = true;
-        } else {
-            isTouchpad = false;
+        function isMobile() {
+            return window.innerWidth <= 768; // Define mobile screen width threshold
         }
 
-        if (!isTouchpad) {
-            scrollAmount += event.deltaY;
+        document.addEventListener('scroll', function() {
+            const currentScrollY = window.scrollY;
+            const currentThreshold = isMobile() ? mobileThreshold : threshold;
 
-            if (scrollAmount >= scrollThreshold) {
-                document.body.style.overflow = 'auto';
-            } else {
-                // Prevent default scrolling behavior until threshold is reached
-                event.preventDefault();
+            // Check if the user is scrolling up and is within the threshold
+            if (currentScrollY < lastScrollY && currentScrollY <= currentThreshold) {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             }
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-    }, { passive: false });
 
-    document.addEventListener('scroll', function() {
-        const threshold = isTouchpad ? 150 : 50; // Set threshold based on input device
-        if (window.scrollY <= threshold) {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-//-----------------------------------------//
-
-
-// script to scroll to top of page when user scrolls up (top is like a magnet) //
-//-----------------------------------------//
-
-document.addEventListener('scroll', function() {
-    const threshold = 500; // Adjust this value as needed
-    if (window.scrollY <= threshold) {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+            // Update the last scroll position
+            lastScrollY = currentScrollY;
         });
-    }
-});
-
-//-----------------------------------------//
-
-
+    });
