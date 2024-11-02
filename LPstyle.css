@@ -589,6 +589,7 @@ overflow-x: hidden;
     background-color: #363636; /* Different background color for the new section */
     border: 2px solid #000; /* Add a border to the new section */
     margin-top: 80px;
+    overflow-x: hidden;
 
 }
 
