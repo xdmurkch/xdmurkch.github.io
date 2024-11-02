@@ -1,40 +1,50 @@
+// dark mode toggle //
+//-----------------------------------------//
+
 function toggle() {
     var bg = document.querySelector("body");
     bg.classList.toggle("active");
 }
+//-----------------------------------------//
 
-// GSAP Timeline
+
+// apply will-change property to elements that will be animated (no idea what this actually does, but fixes js console yelling at me) //
+//-----------------------------------------//
+
+document.querySelectorAll('.h1animate, .animation, .p, .logo, .theme, .social, .ul, .main-nav').forEach(el => {
+    el.style.willChange = 'transform, opacity';
+});
+//-----------------------------------------//
+
+
+// gsap timeline that animates html attributes on page load //
+//-----------------------------------------//
+
 const tl = gsap.timeline({
     defaults: {
         ease: "power2.out"
+    },
+    onComplete: function() {
+        document.body.style.overflow = 'auto';
     }
 });
-
 
 tl.fromTo(".h1animate", {
     y: "100%",
     opacity: 0
 }, {
-    duration: 2,
+    duration: 1.5,
     y: "0%",
     opacity: 1,
     ease: "power1.out"
 });
 tl.to(".animation", {
-    duration: 2.5,
+    duration: 1.5,
     opacity: 0,
     display: "none",
     ease: "power1.out"
-}, "+=1");
+}, "+=0.5");
 tl.fromTo(".p", {
-    y: "100%",
-    opacity: 0
-}, {
-    duration: 1.5,
-    y: "0%",
-    opacity: 1
-}, "-=1");
-tl.fromTo(".logo", {
     y: "100%",
     opacity: 0
 }, {
@@ -42,50 +52,104 @@ tl.fromTo(".logo", {
     y: "0%",
     opacity: 1
 }, "-=0.5");
+tl.fromTo(".logo", {
+    y: "100%",
+    opacity: 0
+}, {
+    duration: 0.75,
+    y: "0%",
+    opacity: 1
+}, "-=0.25");
 tl.fromTo(".theme", {
     y: "100%",
-    visibilty: "none"
+    visibility: "hidden"
 }, {
-    duration: 2,
+    duration: 1,
     y: "0%",
-    visibilty: "visible"
-}, "-=1.5");
+    visibility: "visible"
+}, "-=0.75");
 tl.fromTo(".social , .ul", {
     y: "100%",
     opacity: 0
 }, {
-    duration: 2,
+    duration: 1,
     y: "0%",
     opacity: 1,
     delay: 0.25,
     stagger: 0.25
-}, "-=1");
-tl.fromTo(".main-nav", {  // Assuming '.main-nav' is the menu container
+}, "-=0.5");
+tl.fromTo(".main-nav", {
     y: "-100%",
     opacity: 0
 }, {
-    duration: 1.5,
+    duration: 1,
     y: "0%",
     opacity: 1,
     ease: "ease-in-out"
-});const mainImg = document.querySelector(".mainImg");
+});
+//-----------------------------------------//
 
+
+// confetti effect //
+//-----------------------------------------//
+
+const mainImg = document.querySelector(".mainImg");
 mainImg.addEventListener('mouseover', () => {
-    confetti({ // Initialize with some basic options
+    confetti({
         particleCount: 100,
         spread: 70,
         origin: {
-            x: 0.5, // Confetti will originate from the center horizontally
-            y: 0.3  // Adjust for starting position from top
+            x: 0.5,
+            y: 0.3
         }
     });
 });
 
+//-----------------------------------------//
 
-// Menu Toggle
-const hamburgerMenu = document.querySelector('.open-main-nav');
-const slideInMenu = document.querySelector('.main-nav');
 
-hamburgerMenu.addEventListener('click', function() {
-    slideInMenu.classList.toggle('is-open');
+// remove js until body (DOM) is loaded //
+//-----------------------------------------//
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.body.classList.remove("no-js");
 });
+
+//-----------------------------------------//
+
+
+// script to only allow scrolling after a certain scrolling threshold //
+//-----------------------------------------//
+
+document.addEventListener("DOMContentLoaded", function() {
+    let scrollThreshold = 4000;
+    let scrollAmount = 0;
+
+    window.addEventListener('wheel', function(event) {
+        scrollAmount += event.deltaY;
+
+        if (scrollAmount >= scrollThreshold) {
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
+
+//-----------------------------------------//
+
+
+// script to scroll to top of page when user scrolls up (top is like a magnet) //
+//-----------------------------------------//
+
+document.addEventListener('scroll', function() {
+    const threshold = 100; // Adjust this value as needed
+    if (window.scrollY <= threshold) {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+});
+
+//-----------------------------------------//
+
+

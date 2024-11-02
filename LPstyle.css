@@ -2,13 +2,23 @@
 *{
     margin: 0;
     padding: 0;
-
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+body, section {
+    min-height: 400vh; /* Adjust this value as needed */
+}
+
 body {
     font-family: "Poppins", sans-serif;
     box-sizing: border-box;
     overflow: hidden;
+    transition: background-color 1.5s ease-in-out, color 1.5s ease-in-out;
 }
+
 body.active {
     transition: 1s ease-in-out;
     background-color: #1b1b1e;
@@ -69,29 +79,11 @@ section.active #light {
 }
 
 
-header {
-    position: absolute;
-    top: 1px;
-    left: 0;
-    z-index: 200;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(255, 255, 255, 0); /* Semi-transparent background */
-    backdrop-filter: blur(20px); /* Apply blur */
-    -webkit-backdrop-filter: blur(20px); /* For Safari */
-    border: 1px solid rgba(255, 255, 255, 0); /* Optional: Add border */
-
-}
 
 
 
-.logo {
-    margin-left: 50px;
-    z-index: 400;
-}
+
+
 
 .logo a {
     text-decoration: none;
@@ -128,21 +120,47 @@ header ul li a {
     height: 450px;
     width: 450px;
     z-index: 100;
+    border-radius: 50%;
 }
 
 .mainImg {
     height: auto;
     width: 100%;
     object-fit: cover;
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), filter 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
     border-radius: 50%;
     z-index: 100;
+    animation: bounceIn 3.5s ease-in-out forwards;
 }
 
-.mainImg:hover {
-    filter: grayscale(100%);
+
+
+#murkchImg:hover {
+    filter: grayscale(90%);
 }
 
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
 
 .container {
     display: flex;
@@ -150,8 +168,9 @@ header ul li a {
     justify-content: center;
     width: 100%;
     flex-direction: column;
-    height: 130vh;
+    height: 50vh;
     z-index: 350;
+    margin-top: 36vh;
 }
 
 .container p {;
@@ -191,9 +210,9 @@ header ul li a {
 .social a {
     color: black;
     font-family: "Poppins", sans-serif;
-    font-size: 10px;
-    font-weight: lighter;
     z-index: 120;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .theme {
@@ -209,212 +228,22 @@ header ul li a {
 
 #dark {
     cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 #light {
     cursor: pointer;
     opacity: 0;
+    font-weight: bold;
+    font-size: 16px;
+
 }
 
 section a {
     transition: 2s ease-in-out;
 }
 
-
-
-/* Slide-in Menu */
-.ul { /* Target the <ul> element */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    transform: translateX(-100%); /* Slide in from the left */
-    transition: all 0.5s ease-in-out;
-    z-index: 999; /* Ensure it's above other content */
-}
-
-.ul.active {
-    transform: translateX(0); /* Slide into view */
-}
-
-
-/* Styling the slide-in content */
-.slide-in-menu ul.ul {
-    list-style: none;
-    padding: 20px;
-}
-
-.slide-in-menu ul.ul li {
-    margin-bottom: 15px;
-}
-
-.slide-in-menu ul.ul li a {
-    color: black;
-} /* Customize link color as needed */
-
-
-
-/* Updated Menu Styles */
-.main-nav {
-    position: fixed;
-    top: 0%;  /* Change from -100% */
-    left: -100%;
-    width: 200%;  /* Cover full width */
-    height: 100%;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Apply blur */
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
-    opacity: 0;
-    z-index: 200;
-    visibility: hidden;
-    transition: all .525s;
-}
-
-.main-nav.is-open {
-    left: 0%;      /* Slide in from the left */
-    opacity: 1;
-    z-index: 390;
-    visibility: visible;
-}
-
-/* Yellow band effect */
-.main-nav::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: -15px;
-    background: rgba(0, 0, 0, 0.87);
-    transform-origin: 0 0;
-    transform: skew(-14deg) translateX(-120%);
-    transition: all .275s .1s;
-}
-
-.main-nav.is-open::before {
-    transform: skew(-14deg) translateX(0);
-    z-index: -1;
-}
-
-/* Skewing effect on menu links */
-.main-nav ul {
-    display: inline-flex;
-    flex-direction: column;
-    height: 100%; /* Should be 100%, but we have a notice message :D */
-    align-items: flex-end;
-    justify-content: center;
-    transform: translateX(-18%) skew(-16deg);
-    color: #3884f1;
-}
-
-.main-nav li {
-    display: block;
-    margin: .5rem 0;
-    text-align: right;
-    transform: skew(16deg);
-}
-
-.main-nav a {
-    opacity: 0;
-    transform: translateY(-10px);
-}
-
-.main-nav.is-open a {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.main-nav li:nth-child(1) a {
-    transition: all 275ms 175ms
-}
-.main-nav li:nth-child(2) a {
-    transition: all 275ms 225ms
-}
-.main-nav li:nth-child(3) a {
-    transition: all 275ms 275ms
-}
-.main-nav li:nth-child(4) a {
-    transition: all 275ms 325ms
-}
-.main-nav li:nth-child(5) a {
-    transition: all 275ms 375ms
-}
-
-/* Decoration */
-.main-nav ul,
-.main-nav li {
-    list-style: none;
-    padding: 0;
-}
-.main-nav a {
-    display: block;
-    padding: 12px 0;
-    color: #3884f1;
-    font-size: 1.4em;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.open-main-nav {
-    position: absolute;
-    padding-top: 20px;
-    right: 15px;
-    z-index: 1000;
-    background: none;
-    border: 0;
-    cursor: pointer;
-}
-.open-main-nav:focus {
-    outline: none;
-}
-.burger {
-    width: 24px;
-    height: 3px;
-    margin-bottom: 4px; /* Spacing between lines */
-    position: relative;
-    background: #3884f1;
-    transform: skew(20deg);
-    transition: all .275s;
-}
-
-
-.burger:before,
-.burger:after {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 3px;
-    background-color: #3884f1;
-    transition: all 0.3s ease-in-out;
-}
-
-.burger:after {
-    transform: translateY(-12px) translateX(-2px) skew(-20deg);
-    opacity: 100;
-}
-
-.burger:before {
-    transform: translateY(-16px) skew(-10deg);
-    opacity: 0;
-}
-
-/* Toggle State part */
-.is-open .burger {
-    transform: skew(5deg) translateY(-8px) rotate(-45deg);
-
-}
-
-.is-open .burger:before {
-    transform: translateY(0px) skew(-10deg) rotate(75deg);
-}
-
-.is-open .burger:after {
-    transform: translateY(-12px) translateX(10px) skew(-20deg);
-    opacity: 0;
-}
 
 .device {
     position: relative;
@@ -477,16 +306,17 @@ section a {
     animation: blobAnimation 5s infinite ease-in-out;
     z-index: 3;
 }
+
+
 .five-blob {
     top: 5%;
     left: 70%;
-    position: absolute; /* Ensures blob stays in position */
-
-    width: 350px; /* Adjust width as needed */
-    height: 390px; /* Adjust height as needed */
-    background-color: rgba(4, 0, 0, 0.8); /* Set the color to green */
-    border-radius: 50%; /* Make it a perfect circle */
-    animation: blobAnimation 3s infinite ease-in-out; /* Optional: Add animation (see below) */
+    position: absolute;
+    width: 350px;
+    height: 390px;
+    background-color: rgba(4, 0, 0, 0.8);
+    border-radius: 50%;
+    animation: blobAnimation 3s infinite ease-in-out;
     z-index: 1;
 }
 
@@ -508,44 +338,55 @@ section a {
 
 
 /* General Mobile Optimizations */
-@media (max-width: 768px) { /* Adjust this breakpoint as needed */
+@media (max-width: 768px) {
 
     body, section {
-        margin: 0; /* Remove default margins, if desired */
+        margin: 0;
         flex-direction: column;
+        overflow-x: hidden;
+        max-width: 100vw;
     }
 
     section {
-        padding: 20px; /* Consistent padding around content */
+        margin: 0 auto; /* Center the section horizontally */
+        max-width: 80%; /* Adjust the width as needed */
     }
 
     header {
         align-items: center;
     }
 
-    .ul { /* Main menu list */
-        margin-top: 20px;
 
-    }
 
     .container {
-        flex-direction: column; /* Stack heading and text */
+        flex-direction: column;
         align-items: center;
         text-align: center;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 31vh;
+        z-index: 350;
+        margin-top: 33vh;
     }
 
     .container p {
-        font-weight: lighter;
+        font-weight: bold;
     }
 
     .container h1 {
-        font-size: 50px;
+        font-size: 83px;
         font-weight: 900;
     }
 
     .img-wrapper {
-        width: 80%; /* Limit to prevent overflow */
-        margin: 20px 40px auto; /* Center the image */
+        position: absolute;
+        top: 15%;
+        left: 55%;
+        transform: translateX(-50%);
+        height: 350px;
+        width: 350px;
+
     }
 
     .mainImg {
@@ -555,19 +396,20 @@ section a {
         align-items: center;
         flex-direction: column;
         position: absolute;
-
+        top: 30px;
+        right: 40px;
     }
 
     .social {
-        justify-content: left; /* Distribute social links */
+        justify-content: left;
         width: 100%;
 
-        padding: 0 20px; /* Add padding for breathing room */
-        gap: 10px; /* Add space between links */
+        padding: 0 20px;
+        gap: 10px;
     }
 
     .blob {
-        background-color: rgba(255, 100, 150, 0.8); /* Adjust color and opacity as needed */
+        background-color: rgba(255, 100, 150, 0.8);
         position: absolute;
         top: 7%;
         left:-10%;
@@ -590,14 +432,39 @@ section a {
     }
 
     .blob:nth-child(3) { /* Targets the third blob */
-        top: 70%;
-        left: 5%;
+        top: 73%;
+        left: 2%;
         z-index: 4;
-        width: 250px;
-        height: 220px;
+        width: 220px;
+        height: 181px;
         background-color: rgba(245, 255, 72, 0.89);
         animation-duration: 7s;  /* Faster animation */
     }
+
+    .blob:nth-child(4) {
+        top: 36%;
+        left: 4%;
+        width: 351px;
+        height: 330px;
+        background-color: rgba(100, 150, 255, 0.6);
+        animation-duration: 8s;
+        z-index: 2;
+    }
+
+    .five-blob {
+        top: -7%;
+        left: 47%;
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background-color: rgba(4, 0, 0, 0.8);
+        border-radius: 50%;
+        animation: blobAnimation 3s infinite ease-in-out;
+        z-index: 1;
+    }
+
+    .theme{
+    right: 10vw;
 }
 
 
@@ -639,10 +506,46 @@ section a {
 }
 
 
+.no-js {
+    visibility: hidden;
+}
+
+@keyframes fadeZoomInBlur {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+        transform: scale(1);
+
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1.2);
+
+    }
+}
 
 
+.main-content {
+overscroll-behavior-x: none;
+overflow-x: hidden;
+    margin-bottom: 60px; /* Add margin to separate from the new section */
+}
+
+.new-section {
+    
+    background-color: #363636; /* Different background color for the new section */
+    border: 2px solid #000; /* Add a border to the new section */
+    margin-top: 80px;
+
+}
+}
 
 
+#aboutMe {
+
+    margin-top: 90vh;
+}
 
 
 
