@@ -296,6 +296,8 @@ section a {
     height: 320px;
     background-color: rgba(245, 255, 72, 0.89);
     animation-duration: 7s;  /* Faster animation */
+    z-index: 4; /* Ensure it is above other elements */
+
 }
 .blob:nth-child(4) { /* Targets the third blob */
     top: 35%; /* Place it at the bottom */
@@ -554,6 +556,12 @@ section a {
     .five-blob {
         top: 0%;
         left: 55%;
+    }
+    .blob, .green-blob {
+        position: absolute;
+        overflow: hidden; /* Ensure no overflow issues */
+        margin: 0; /* Remove any margin */
+        padding: 0; /* Remove any padding */
     }
 }
 
