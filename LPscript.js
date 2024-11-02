@@ -142,14 +142,24 @@ document.addEventListener("DOMContentLoaded", function() {
 // script to scroll to top of page when user scrolls up (top is like a magnet) //
 //-----------------------------------------//
 
-document.addEventListener('scroll', function() {
-    const threshold = 350; // Adjust this value as needed
-    if (window.scrollY <= threshold) {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+document.addEventListener("DOMContentLoaded", function() {
+    const mainContent = document.querySelector('.main-content');
+    const threshold = 0.65; // 15% of the main content is visible
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.intersectionRatio < threshold) {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
         });
-    }
+    }, {
+        threshold: [threshold]
+    });
+
+    observer.observe(mainContent);
 });
 
 //-----------------------------------------//
