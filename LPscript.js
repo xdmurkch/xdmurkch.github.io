@@ -110,7 +110,6 @@ mainImg.addEventListener('mouseover', () => {
 //-----------------------------------------//
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.body.style.overflowY = 'auto'; // Enable vertical scrolling after DOM is loaded
     document.body.classList.remove("no-js");
 });
 
@@ -140,3 +139,17 @@ document.addEventListener("DOMContentLoaded", function() {
             lastScrollY = currentScrollY;
         });
     });
+
+
+
+window.onload = function() {
+    // Disable vertical scrolling initially
+    document.documentElement.style.overflowY = 'hidden';
+    document.body.style.overflowY = 'hidden';
+
+    // Enable vertical scrolling after DOM is loaded and a certain amount of time has passed
+    setTimeout(function() {
+        document.documentElement.style.overflowY = 'auto';
+        document.body.style.overflowY = 'auto';
+    }, 3000); // Adjust the time (in milliseconds) as needed
+};
