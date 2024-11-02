@@ -12,6 +12,10 @@ body, section {
     min-height: 400vh; /* Adjust this value as needed */
 }
 
+html, body {
+    overflow-x: hidden; /* Disable horizontal scrolling */
+}
+
 body {
     font-family: "Poppins", sans-serif;
     box-sizing: border-box;
@@ -82,7 +86,11 @@ section.active #light {
 
 
 
+.mail{
+    text-decoration: line-through;
+    text-decoration-thickness: 3px;
 
+}
 
 
 .logo a {
@@ -189,11 +197,11 @@ header ul li a {
     color: #000000;
     z-index: 500;
     text-shadow: 0 0 230px rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
 }
 
 .h1animate {
     z-index: 350;
-
 }
 
 .social {
@@ -205,14 +213,16 @@ header ul li a {
     width: 300px;
     height: 50px;
     z-index: 100;
+    margin-left: 15px;
 }
 
 .social a {
     color: black;
     font-family: "Poppins", sans-serif;
     z-index: 120;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: bold;
+    padding: 5px;
 }
 
 .theme {

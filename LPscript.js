@@ -112,6 +112,7 @@ mainImg.addEventListener('mouseover', () => {
 //-----------------------------------------//
 
 document.addEventListener("DOMContentLoaded", function() {
+    document.body.style.overflowY = 'auto'; // Enable vertical scrolling after DOM is loaded
     document.body.classList.remove("no-js");
 });
 
@@ -122,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //-----------------------------------------//
 
 document.addEventListener("DOMContentLoaded", function() {
-    let scrollThreshold = 4000;
+    let scrollThreshold = 78000;
     let scrollAmount = 0;
 
     window.addEventListener('wheel', function(event) {
@@ -130,10 +131,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (scrollAmount >= scrollThreshold) {
             document.body.style.overflow = 'auto';
+        } else {
+            document.body.style.overflow = 'hidden';
         }
     });
 });
-
 //-----------------------------------------//
 
 
@@ -141,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //-----------------------------------------//
 
 document.addEventListener('scroll', function() {
-    const threshold = 100; // Adjust this value as needed
+    const threshold = 350; // Adjust this value as needed
     if (window.scrollY <= threshold) {
         window.scrollTo({
             top: 0,
