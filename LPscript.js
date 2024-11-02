@@ -142,34 +142,14 @@ document.addEventListener("DOMContentLoaded", function() {
 // script to scroll to top of page when user scrolls up (top is like a magnet) //
 //-----------------------------------------//
 
-document.addEventListener("DOMContentLoaded", function() {
-    const mainContent = document.querySelector('.main-content');
-    const threshold = 0.65; // 65% of the main content is visible
-    let isTrackpad = false;
-
-    window.addEventListener('wheel', function(event) {
-        if (Math.abs(event.deltaY) < 50) {
-            isTrackpad = true;
-        } else {
-            isTrackpad = false;
-        }
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const scrollThreshold = isTrackpad ? 0.65 : 0.85; // Adjust threshold for mouse users
-            if (entry.intersectionRatio < scrollThreshold) {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }
+document.addEventListener('scroll', function() {
+    const threshold = 150; // Adjust this value as needed
+    if (window.scrollY <= threshold) {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
-    }, {
-        threshold: [threshold]
-    });
-
-    observer.observe(mainContent);
+    }
 });
 
 //-----------------------------------------//
