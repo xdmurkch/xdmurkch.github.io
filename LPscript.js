@@ -143,7 +143,13 @@ document.addEventListener("DOMContentLoaded", function() {
 //-----------------------------------------//
 
 document.addEventListener('scroll', function() {
-    const threshold = 150; // Adjust this value as needed
+    let threshold = 150; // Default threshold
+
+    // Check if the user is using a mouse or a mobile device
+    if (navigator.maxTouchPoints > 0 || matchMedia('(pointer: coarse)').matches) {
+        threshold = 50;
+    }
+
     if (window.scrollY <= threshold) {
         window.scrollTo({
             top: 0,
