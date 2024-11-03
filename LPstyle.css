@@ -200,7 +200,7 @@ header ul li a {
 .container p {;
     font-family: "Poppins", sans-serif;
     font-size: 30px;
-    color: #454e56;
+    color: #8b9197;
     font-weight: bold;
     text-shadow: 0 0 230px rgba(255, 255, 255, 0.1);
     z-index: 350;
@@ -413,12 +413,26 @@ overflow-x: hidden;
 }
 
 .new-section {
-    
-    background-color: #363636; /* Different background color for the new section */
-    border: 2px solid #000; /* Add a border to the new section */
+    border-radius: 20px; /* Add a border radius to the new section */
+    background-color: rgba(54, 54, 54, 0.6); /* Different background color for the new section */
+    border: 1px solid #000; /* Add a border to the new section */
     margin-top: 80px;
+    margin-bottom: 20px;
     overflow-x: hidden;
+}
 
+.new-section h2 {
+    color: #fff; /* Change the text color */
+    font-size: 2rem; /* Change the font size */
+    padding: 10px; /* Add padding to the text */
+    text-align: center; /* Center the text */
+}
+
+.new-section p {
+    color: #fff; /* Change the text color */
+    font-size: 1.2rem; /* Change the font size */
+    padding: 10px; /* Add padding to the text */
+    text-align: center; /* Center the text */
 }
 
 
