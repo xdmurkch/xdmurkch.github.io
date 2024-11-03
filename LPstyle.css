@@ -9,7 +9,7 @@ html {
 }
 
 body, section {
-    min-height: 400vh;
+    min-height: 100vh;
 }
 
 html, body {
@@ -93,6 +93,21 @@ section.active #light {
 
 }
 
+/* Default text-shadow */
+#dark, #light, .social a {
+    text-shadow: 0px 5px 10px #000000;
+}
+
+/* Text-shadow for dark mode */
+body.active #dark,
+body.active #light{
+    text-shadow: 0px 5px 10px rgba(255, 255, 255, 0.40);
+}
+
+body.active .social a {
+    text-shadow: 0px 5px 10px rgba(255, 255, 255, 0.35);
+}
+
 
 .logo a {
     text-decoration: none;
@@ -127,7 +142,7 @@ header ul li a {
     left: 50%;
     transform: translate(-50%,-50%);
     height: 450px;
-    width: 450px;
+    width: 450px; /* ehhh den skal ændres til vw og height til vh*/
     z-index: 100;
     border-radius: 50%;
 }
@@ -215,8 +230,9 @@ header ul li a {
     margin-left: 15px;
     padding: 10px 10px;
     border-radius: 10px;
-    backdrop-filter: blur(1.5em);
-    background-color: rgba(5, 5, 5, 0.2);
+    backdrop-filter: blur(2em);
+    background-color: rgba(44, 42, 42, 0.4);
+    cursor: default;
 }
 
 .social a {
@@ -226,6 +242,9 @@ header ul li a {
     font-size: 16px;
     font-weight: bold;
     padding: 4px 5px;
+    text-shadow:0px 5px 10px #000000;
+    text-decoration: none;
+    cursor: default;
 }
 
 .theme {
@@ -239,18 +258,20 @@ header ul li a {
     padding: 12.5px 10px;
     border-radius: 10px;
     backdrop-filter: blur(1.5em);
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    background-color: rgba(115, 101, 101, 0.4);
+    transition: background-color 1.5s cubic-bezier(.8,.39,.1,1.52), backdrop-filter 1.5s cubic-bezier(.79,.14,.15,.86);
+    cursor: default;
 }
 
 .theme:hover {
-    background-color: rgba(5, 5, 5, 0.2); /* Change background color on hover */
-    color: #fff; /* Change text color on hover */
+    background-color: rgba(5, 5, 5, 0.2);
 }
 
 #dark {
     cursor: default;
     font-weight: bold;
     font-size: 16px;
+    text-shadow:0px 5px 10px #000000;
 }
 
 #light {
@@ -258,7 +279,7 @@ header ul li a {
     opacity: 0;
     font-weight: bold;
     font-size: 16px;
-
+    text-shadow:0px 5px 10px #000000;
 }
 
 section a {
@@ -302,8 +323,8 @@ section a {
 .blob:nth-child(3) { /* Targets the third blob */
     top: 70%;
     left: 10%;
-    width: 450px;
-    height: 320px;
+    width: 40%;
+    height: 35%;
     background-color: rgba(245, 255, 72, 0.89);
     animation-duration: 7s;  /* Faster animation */
     z-index: 1; /* Ensure it is above other elements */
@@ -360,218 +381,9 @@ section a {
 }
 
 
-/* General Mobile Optimizations */
-@media (max-width: 768px) {
-
-    body, section {
-        margin: 0;
-        flex-direction: column;
-        overflow-x: hidden;
-        max-width: 100vw;
-    }
-    html, body {
-        overflow-x: hidden;
-    }
-
-    section {
-        margin: 0 auto;
-        max-width: 100%;
-    }
-
-    header {
-        align-items: center;
-    }
-
-
-    .container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        height: 31vh;
-        z-index: 350;
-        margin-top: 33vh;
-    }
-
-    .container p {
-        font-weight: bold;
-    }
-
-    .container h1 {
-        font-size: 83px;
-        font-weight: 900;
-    }
-
-    .img-wrapper {
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 350px;
-        width: 350px;
-
-    }
-
-    .mainImg {
-        max-width: 100%;
-        height: auto;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        position: absolute;
-
-    }
-
-    .social {
-        justify-content: left;
-        width: 100%;
-
-        padding: 0 20px;
-        gap: 10px;
-    }
-
-    .blob {
-        background-color: rgba(255, 100, 150, 0.8);
-        position: absolute;
-        top: 7%;
-        left: -10%;
-        width: 250px;
-        height: 250px;
-        border-radius: 40% 60% 70% 30% / 60% 40% 60% 40%;
-        animation: blobAnimation 10s ease-in-out infinite alternate;
-        z-index: 1;
-    }
-
-    .green-blob {
-        position: absolute;
-        bottom: 5%;
-        right: 10%;
-        width: 150px;
-        height: 170px;
-        background-color: rgba(113, 255, 113, 0.7);
-        border-radius: 50%;
-        animation: blobAnimation 5s infinite ease-in-out;
-        z-index: 3;
-    }
-
-    .blob:nth-child(3) { /* Targets the third blob */
-        top: 73%;
-        left: 2%;
-        z-index: 4;
-        width: 220px;
-        height: 181px;
-        background-color: rgba(245, 255, 72, 0.89);
-        animation-duration: 7s; /* Faster animation */
-    }
-
-    .blob:nth-child(4) {
-        top: 36%;
-        left: 4%;
-        width: 351px;
-        height: 330px;
-        background-color: rgba(100, 150, 255, 0.6);
-        animation-duration: 8s;
-        z-index: 2;
-    }
-
-    .five-blob {
-        top: -7%;
-        left: 47%;
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        background-color: rgba(4, 0, 0, 0.8);
-        border-radius: 50%;
-        animation: blobAnimation 3s infinite ease-in-out;
-        z-index: 1;
-    }
-
-    .social a {
-        font-size: 10px;
-    }
-
-    .social {
-        position: absolute;
-        left: 0;
-        display: flex;
-        justify-content: space-evenly;
-        width: 300px;
-        height: 50px;
-        z-index: 100;
-        margin-left: 5px;
-        padding: 0px;
-    }
-
-    .theme {
-        right: 10vw;
-        width: 15vw;
-
-    }
-}
 
 
 
-@media(max-width: 462px) {
-    .mainImg {
-        position: absolute;
-        justify-content: center;
-        max-width: 100%;
-        left: 6%;
-        top: 30px;
-        margin: -80px -20px;
-
-    }
-    .header-container {
-        display: flex;
-        justify-content: space-between; /* Space between menu and logo */
-        align-items: center;
-        width: 100%;
-        padding: 0 20px; /* Adding padding for breathing room */
-    }
-    .theme {
-        position: absolute;
-        bottom: 4px;
-        right: 0;
-        display: flex;
-        justify-content: right;
-        padding-right: 20px;
-        width: 16vw;
-
-    }
-
-    #dark {
-        cursor: pointer;
-        font-size: 15px;
-    }
-
-    #light {
-        cursor: pointer;
-        opacity: 0;
-        font-size: 15px;
-    }
-
-    .social {
-        gap: 0;
-        width: 60vw;
-    }
-
-    .social a {
-        font-size: 12px;
-    }
-
-    .five-blob {
-        top: 0%;
-        left: 55%;
-    }
-    .blob, .green-blob {
-        position: absolute;
-        overflow: hidden; /* Ensure no overflow issues */
-        margin: 0; /* Remove any margin */
-        padding: 0; /* Remove any padding */
-    }
-}
 
 
 .no-js {
@@ -624,15 +436,15 @@ overflow-x: hidden;
     transform: translate(-50%, -60%);
     width: 60vw;
     height: 70vh;
-    background-color: rgba(115, 101, 101, 0.4);
     border-radius: 40px;
     z-index: 4; /* in front of blobs, but behind h1, mainimg and p :D */
     backdrop-filter: blur(1.5em);
+    background-color: rgba(115, 101, 101, 0.4);
     transition: background-color 1.5s cubic-bezier(.8,.39,.1,1.52), backdrop-filter 1.5s cubic-bezier(.79,.14,.15,.86);
     -webkit-animation: backgroundAnimation 29s ease infinite;
     -moz-animation: backgroundAnimation 29s ease infinite;
     -o-animation: backgroundAnimation 29s ease infinite;
-    animation: backgroundAnimation 29s ease infinite, backgroundAnimation2 7s ease infinite;}
+    animation: backgroundAnimation 29s ease infinite, backgroundAnimation2 17s ease infinite;}
 
 body.active .background-rectangle {
     background-color: rgba(225, 225, 225, 0.4); /* Dark mode background color */
@@ -657,24 +469,165 @@ body.active .background-rectangle {
 
 
 @-webkit-keyframes backgroundAnimation {
-    0%{background-position:49% 0%}
-    50%{background-position:52% 100%}
-    100%{background-position:49% 0%}
+    0%{background-position:45% 0%}
+    50%{background-position:40% 100%}
+    100%{background-position:45% 0%}
 }
 @-moz-keyframes backgroundAnimation {
-    0%{background-position:49% 0%}
-    50%{background-position:52% 100%}
-    100%{background-position:49% 0%}
+    0%{background-position:45% 0%}
+    50%{background-position:40% 100%}
+    100%{background-position:45% 0%}
 }
 @-o-keyframes backgroundAnimation {
-    0%{background-position:49% 0%}
-    50%{background-position:52% 100%}
-    100%{background-position:49% 0%}
+    0%{background-position:45% 0%}
+    50%{background-position:40% 100%}
+    100%{background-position:45% 0%}
 }
 @keyframes backgroundAnimation {
-    0%{background-position:49% 0%}
-    50%{background-position:52% 100%}
-    100%{background-position:49% 0%}
+    0%{background-position:45% 0%}
+    50%{background-position:40% 100%}
+    100%{background-position:45% 0%}
 }
 
 
+@media (max-width: 1024px) {
+    .blob {
+        position: absolute;
+        width: 500px;
+        height: 450px;
+
+    }
+    .blob, .green-blob, .five-blob {
+        position: absolute;
+        overflow: hidden; /* Ensure no overflow issues */
+        margin: 0; /* Remove any margin */
+        padding: 0; /* Remove any padding */
+        clip-path: inset(0 0 0 0); /* Constrain the visible area */
+    }
+    .main-content {
+        width: 100%;
+    }
+
+    .green-blob {
+        width: 300px;
+        height: 250px;
+        bottom: -3%;
+        right: 2%;
+
+    }
+
+    .blob:nth-child(3) { /* Targets the third blob */
+        width: 237px;
+        height: 303px;
+        left: 3%;
+    }
+
+    .blob:nth-child(4) {
+        width: 590px;
+        height: 620px;
+        top: 17%;
+        left: 22%;
+    }
+
+    .five-blob {
+        width: 267px;
+        height: 305px;
+        top: 3%;
+        left: 67%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    body, section {
+        margin: 0;
+        flex-direction: column;
+        overflow-x: hidden;
+        max-width: 100vw;
+    }
+
+    .five-blob {
+        width: 267px;
+        height: 305px;
+        top: 3%;
+        left: 57%;
+    }
+    .blob:nth-child(4) {
+        width: 455px;
+        height: 578px;
+        top: 21%;
+        left: 20%;
+    }
+}
+
+@media(max-width: 462px) {
+
+    html {
+        overflow-x: hidden;
+    }
+    body, section {
+        overflow-x: hidden;
+    }
+    .mainImg {
+        position: absolute;
+        justify-content: center;
+        max-width: 80%;
+        left: 14.5vw;
+        top: 10vh;
+        margin: -80px -20px;
+
+    }
+    .header-container {
+        display: flex;
+        justify-content: space-between; /* Space between menu and logo */
+        align-items: center;
+        width: 100%;
+        padding: 0 20px; /* Adding padding for breathing room */
+    }
+    .theme {
+        position: absolute;
+        bottom: 4px;
+        right: 0;
+        display: flex;
+        justify-content: right;
+        padding-right: 20px;
+        width: 16vw;
+
+    }
+
+    #dark {
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    #light {
+        cursor: pointer;
+        opacity: 0;
+        font-size: 15px;
+    }
+
+    .social {
+        gap: 0;
+        width: 60vw;
+    }
+
+    .social a {
+        font-size: 12px;
+    }
+
+    .background-rectangle {
+        width: 90vw;
+        height: 60vh;
+    }
+
+    .five-blob {
+        top: 0%;
+        left: 55%;
+    }
+    .blob, .green-blob {
+        position: absolute;
+        overflow: hidden; /* Ensure no overflow issues */
+        margin: 0; /* Remove any margin */
+        padding: 0; /* Remove any padding */
+    }
+}

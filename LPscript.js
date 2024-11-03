@@ -164,3 +164,9 @@ window.onload = function() {
         document.body.style.overflowY = 'auto';
     }, 3000); // Adjust the time (in milliseconds) as needed
 };
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.social a').forEach(el => {
+        el.style.color = getComputedStyle(el).color;
+    });
+});
