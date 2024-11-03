@@ -207,14 +207,16 @@ header ul li a {
 
 .social {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 1.5vh;
+    left: 1vw;
     display: flex;
     justify-content: space-evenly;
-    width: 300px;
-    height: 50px;
     z-index: 100;
     margin-left: 15px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(1.5em);
+    background-color: rgba(5, 5, 5, 0.2);
 }
 
 .social a {
@@ -223,28 +225,36 @@ header ul li a {
     z-index: 120;
     font-size: 16px;
     font-weight: bold;
-    padding: 5px;
+    padding: 4px 5px;
 }
 
 .theme {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 2vh;
+    right: 2vw;
     display: flex;
     justify-content: center;
-    width: 100px;
-    height: 50px;
+    width: 10vw;
     z-index: 400;
+    padding: 12.5px 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(1.5em);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.theme:hover {
+    background-color: rgba(5, 5, 5, 0.2); /* Change background color on hover */
+    color: #fff; /* Change text color on hover */
 }
 
 #dark {
-    cursor: pointer;
+    cursor: default;
     font-weight: bold;
     font-size: 16px;
 }
 
 #light {
-    cursor: pointer;
+    cursor: default;
     opacity: 0;
     font-weight: bold;
     font-size: 16px;
@@ -296,7 +306,7 @@ section a {
     height: 320px;
     background-color: rgba(245, 255, 72, 0.89);
     animation-duration: 7s;  /* Faster animation */
-    z-index: 4; /* Ensure it is above other elements */
+    z-index: 1; /* Ensure it is above other elements */
 
 }
 .blob:nth-child(4) { /* Targets the third blob */
@@ -484,7 +494,6 @@ section a {
 
     .social {
         position: absolute;
-        bottom: 0;
         left: 0;
         display: flex;
         justify-content: space-evenly;
@@ -498,7 +507,7 @@ section a {
     .theme {
         right: 10vw;
         width: 15vw;
-        height: 5vh;
+
     }
 }
 
@@ -529,7 +538,7 @@ section a {
         justify-content: right;
         padding-right: 20px;
         width: 16vw;
-        height: 6vh;
+
     }
 
     #dark {
@@ -546,7 +555,6 @@ section a {
     .social {
         gap: 0;
         width: 60vw;
-        height: 6.5vh;
     }
 
     .social a {
@@ -609,7 +617,64 @@ overflow-x: hidden;
 }
 
 
+.background-rectangle {
+    position: absolute;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    width: 60vw;
+    height: 70vh;
+    background-color: rgba(115, 101, 101, 0.4);
+    border-radius: 40px;
+    z-index: 4; /* in front of blobs, but behind h1, mainimg and p :D */
+    backdrop-filter: blur(1.5em);
+    transition: background-color 1.5s cubic-bezier(.8,.39,.1,1.52), backdrop-filter 1.5s cubic-bezier(.79,.14,.15,.86);
+    -webkit-animation: backgroundAnimation 29s ease infinite;
+    -moz-animation: backgroundAnimation 29s ease infinite;
+    -o-animation: backgroundAnimation 29s ease infinite;
+    animation: backgroundAnimation 29s ease infinite, backgroundAnimation2 7s ease infinite;}
+
+body.active .background-rectangle {
+    background-color: rgba(225, 225, 225, 0.4); /* Dark mode background color */
+    backdrop-filter: blur(1.5em) brightness(0.7); /* Adjust the blur and brightness for dark mode */
+}
 
 
+@keyframes backgroundAnimation2 {
+    0% {
+        transform: translate(-50%, -60%) scale(1);
+        background-color: rgba(115, 101, 101, 0.4);
+    }
+    50% {
+        transform: translate(-50%, -60%) scale(1.05);
+        background-color: rgba(145, 128, 128, 0.6);
+    }
+    100% {
+        transform: translate(-50%, -60%) scale(1);
+        background-color: rgba(115, 101, 101, 0.4);
+    }
+}
+
+
+@-webkit-keyframes backgroundAnimation {
+    0%{background-position:49% 0%}
+    50%{background-position:52% 100%}
+    100%{background-position:49% 0%}
+}
+@-moz-keyframes backgroundAnimation {
+    0%{background-position:49% 0%}
+    50%{background-position:52% 100%}
+    100%{background-position:49% 0%}
+}
+@-o-keyframes backgroundAnimation {
+    0%{background-position:49% 0%}
+    50%{background-position:52% 100%}
+    100%{background-position:49% 0%}
+}
+@keyframes backgroundAnimation {
+    0%{background-position:49% 0%}
+    50%{background-position:52% 100%}
+    100%{background-position:49% 0%}
+}
 
 
