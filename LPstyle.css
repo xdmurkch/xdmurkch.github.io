@@ -36,12 +36,22 @@ body.active a {
     color: white;
 }
 
+body.active .h1animate {
+    transition: 1.5s ease-in-out;
+    transition-delay: 0.5s;
+    color: #000000;
+}
+
 body.active #dark {
     opacity: 0;
 }
 
 body.active #light {
     opacity: 1;
+}
+
+body.active .p {
+    text-shadow: 4px 1px 10px rgba(12, 12, 12, 0.89);
 }
 
 .animation {
@@ -95,13 +105,13 @@ section.active #light {
 
 /* Default text-shadow */
 #dark, #light, .social a {
-    text-shadow: 0px 5px 10px #000000;
+    text-shadow: 1px 5px 10px #000000;
 }
 
 /* Text-shadow for dark mode */
 body.active #dark,
 body.active #light{
-    text-shadow: 0px 5px 10px rgba(255, 255, 255, 0.40);
+    text-shadow: 1px 5px 10px rgb(0, 0, 0);
 }
 
 body.active .social a {
@@ -135,6 +145,8 @@ header ul li a {
     color: black;
     text-decoration: none;
 }
+
+
 
 .img-wrapper {
     position: absolute;
@@ -200,9 +212,9 @@ header ul li a {
 .container p {;
     font-family: "Poppins", sans-serif;
     font-size: 30px;
-    color: #8b9197;
+    color: #818183;
     font-weight: bold;
-    text-shadow: 0 0 230px rgba(255, 255, 255, 0.1);
+    text-shadow: 4px 1px 10px rgba(189, 189, 189, 0.89);
     z-index: 350;
 }
 
@@ -210,9 +222,8 @@ header ul li a {
     font-family: "Poppins", sans-serif;
     font-size: 100px;
     font-weight: 900;
-    color: #000000;
+    color: #e3dcdc;
     z-index: 500;
-    text-shadow: 0 0 230px rgba(255, 255, 255, 0.1);
     padding-top: 30px;
 }
 
@@ -242,7 +253,7 @@ header ul li a {
     font-size: 16px;
     font-weight: bold;
     padding: 4px 5px;
-    text-shadow:0px 5px 10px #000000;
+    text-shadow:1px 5px 10px #000000;
     text-decoration: none;
     cursor: default;
 }
@@ -416,6 +427,8 @@ overflow-x: hidden;
     border-radius: 20px; /* Add a border radius to the new section */
     background-color: rgba(54, 54, 54, 0.6); /* Different background color for the new section */
     border: 1px solid #000; /* Add a border to the new section */
+    border-right-width: 5px; /* Thicker border on the right */
+    border-bottom-width: 5px; /* Thicker border on the bottom */
     margin-top: 80px;
     margin-bottom: 20px;
     overflow-x: hidden;
